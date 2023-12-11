@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.actor_fragment.ActorFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="146dp"
+        android:layout_height="201dp"
+        app:cardCornerRadius="9dp"
+        app:cardElevation="5dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/actor_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/actor_name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:text="Джонни Депп"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/cardview"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/actor_profession"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="10dp"
+        android:text="Актер"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@+id/cardview"
+        app:layout_constraintTop_toBottomOf="@+id/actor_name" />
+
+    <TextView
+        android:id="@+id/best_movies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="16dp"
+        android:text="Лучшее"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardview" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/best_recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="220dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/best_movies"
+        app:spanCount="1"
+        tools:listitem="@layout/item" />
+
+    <TextView
+        android:id="@+id/filmography"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="16dp"
+        android:text="Фильмография:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/best_recycler" />
+
+    <TextView
+        android:id="@+id/film_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:text="44"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/filmography"
+        app:layout_constraintTop_toBottomOf="@+id/best_recycler"
+        android:layout_marginTop="16dp"
+        />
+
+    <TextView
+        android:id="@+id/full_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="26dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="К списку"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/best_recycler" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

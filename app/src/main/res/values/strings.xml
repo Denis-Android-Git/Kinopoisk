@@ -1,0 +1,90 @@
+<resources>
+    <string name="app_name">Kinopoisk</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="new_movies">Премьеры</string>
+    <string name="all_movies">все</string>
+    <string name="movie_name">Название</string>
+    <string name="genre">Жанр</string>
+    <string name="top_250">Топ 250</string>
+    <string name="popular">Популярное</string>
+    <string name="series">Сериалы</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="skip">Пропустить</string>
+    <string name="sk">Пропустить</string>
+
+    <string-array name="years_slider">
+        <item>1950</item>
+        <item>2023</item>
+    </string-array>
+
+    <string-array name="rating_slider">
+        <item>0</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="Countries_key">
+        <item>любая</item>
+        <item>США</item>
+        <item>Франция</item>
+        <item>Италия</item>
+        <item>Россия</item>
+        <item>Канада</item>
+        <item>Германия</item>
+        <item>Австралия</item>
+        <item>Индия</item>
+    </string-array>
+    <integer-array name="Countries_int_value">
+        <item>@null</item> <!--любая-->
+        <item>1</item>  <!--США-->
+        <item>3</item>  <!--Франция-->
+        <item>10</item> <!--Италия-->
+        <item>34</item>  <!--Россия-->
+        <item>14</item>  <!--Канада-->
+        <item>9</item>  <!--Германия-->
+        <item>13</item> <!--Австралия-->
+        <item>7</item> <!--Индия-->
+    </integer-array>
+
+    <string-array name="Genre_key">
+        <item>любой</item>
+        <item>боевик</item>
+        <item>вестерн</item>
+        <item>детектив</item>
+        <item>детский</item>
+        <item>документальный</item>
+        <item>драма</item>
+        <item>комедия</item>
+        <item>приключения</item>
+        <item>фантастика</item>
+        <item>фэнтези</item>
+    </string-array>
+
+    <integer-array name="Genre_int_value">
+        <item>@null</item>   <!--любой-->
+        <item>11</item>    <!--боевик-->
+        <item>10</item>   <!--вестерн-->
+        <item>5</item>   <!--детектив-->
+        <item>33</item>  <!--детский-->
+        <item>22</item>   <!--документальный-->
+        <item>2</item>    <!--драма-->
+        <item>13</item>    <!--комедия-->
+        <item>7</item>   <!--приключения-->
+        <item>6</item>    <!--фантастика-->
+        <item>12</item>    <!--фэнтези-->
+    </integer-array>
+
+    <string-array name="type_movie">
+        <item>ALL</item>
+        <item>FILM</item>
+        <item>TV_SERIES</item>
+    </string-array>
+
+    <string-array name="order">
+        <item>YEAR</item>
+        <item>NUM_VOTE</item>
+        <item>RATING</item>
+    </string-array>
+</resources>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mobile_navigation"
+            app:startDestination="@id/onboardingFragment">
+
+    <fragment
+            android:id="@+id/navigation_home"
+            android:name="com.example.kinopoisk.ui.home.HomeFragment"
+            android:icon="@drawable/skillcinema"
+            tools:layout="@layout/fragment_home">
+        <action android:id="@+id/action_navigation_home_to_fullMovieListFragment"
+                app:destination="@id/fullMovieListFragment"/>
+        <action
+            android:id="@+id/action_navigation_home_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/navigation_dashboard"
+            android:name="com.example.kinopoisk.ui.search.SearchFragment"
+            tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_navigation_dashboard_to_searchSettingsFragment"
+            app:destination="@id/searchSettingsFragment" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/navigation_notifications"
+            android:name="com.example.kinopoisk.ui.profile.ProfileFragment"
+            tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_navigation_notifications_to_fullCollectionFragment"
+            app:destination="@id/fullCollectionFragment" />
+    </fragment>
+
+    <fragment android:id="@+id/onboardingFragment"
+              android:name="com.example.kinopoisk.ui.onboarding.OnboardingFragment"
+              android:label="fragment_onboarding"
+              tools:layout="@layout/fragment_onboarding">
+        <action android:id="@+id/action_onboardingFragment_to_navigation_home"
+                app:destination="@id/navigation_home"/>
+    </fragment>
+    <fragment android:id="@+id/fullMovieListFragment"
+              android:name="com.example.kinopoisk.ui.fullmovielist.FullMovieListFragment"
+              android:label="fragment_full_movie_list" tools:layout="@layout/fragment_full_movie_list">
+        <action
+            android:id="@+id/action_fullMovieListFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_fullMovieListFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.kinopoisk.ui.detail_fragment.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_bigPictureFragment"
+            app:destination="@id/bigPictureFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_gallaryFragment"
+            app:destination="@id/gallaryFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_actorFragment"
+            app:destination="@id/actorFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_detailFragment_to_seriesFragment"
+            app:destination="@id/seriesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bigPictureFragment"
+        android:name="com.example.kinopoisk.ui.gallary_fragments.BigPictureFragment"
+        android:label="fragment_big_picture"
+        tools:layout="@layout/fragment_big_picture" >
+        <action
+            android:id="@+id/action_bigPictureFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/gallaryFragment"
+        android:name="com.example.kinopoisk.ui.gallary_fragments.GalleryFragment"
+        android:label="fragment_gallary"
+        tools:layout="@layout/fragment_gallary" >
+        <action
+            android:id="@+id/action_gallaryFragment_to_bigPictureFragment"
+            app:destination="@id/bigPictureFragment" />
+        <action
+            android:id="@+id/action_gallaryFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/actorFragment"
+        android:name="com.example.kinopoisk.ui.actor_fragment.ActorFragment"
+        android:label="fragment_actor"
+        tools:layout="@layout/fragment_actor" >
+        <action
+            android:id="@+id/action_actorFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_actorFragment_to_actorFilmographyFragment"
+            app:destination="@id/actorFilmographyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/actorFilmographyFragment"
+        android:name="com.example.kinopoisk.ui.actorFilmography.ActorFilmographyFragment"
+        android:label="fragment_actor_filmography"
+        tools:layout="@layout/fragment_actor_filmography" />
+    <fragment
+        android:id="@+id/seriesFragment"
+        android:name="com.example.kinopoisk.ui.seriesFragment.SeriesFragment"
+        android:label="fragment_series"
+        tools:layout="@layout/fragment_series" />
+    <fragment
+        android:id="@+id/searchSettingsFragment"
+        android:name="com.example.kinopoisk.ui.search.SearchSettingsFragment"
+        android:label="fragment_search_settings"
+        tools:layout="@layout/fragment_search_settings" >
+        <action
+            android:id="@+id/action_searchSettingsFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullCollectionFragment"
+        android:name="com.example.kinopoisk.ui.profile.FullCollectionFragment"
+        android:label="fragment_full_collection"
+        tools:layout="@layout/fragment_full_collection" />
+</navigation>

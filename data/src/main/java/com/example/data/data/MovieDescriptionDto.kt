@@ -1,0 +1,53 @@
+package com.example.data.data
+
+import com.example.domain.domain.entity.Country
+import com.example.domain.domain.entity.Genre
+import com.example.domain.domain.entity.MovieDescription
+
+class MovieDescriptionDto(
+    override val completed: Boolean,
+    override val countries: List<Country>,
+    override val coverUrl: String,
+    override val description: String,
+    override val editorAnnotation: Any,
+    override val endYear: Any,
+    override val filmLength: Int,
+    override val genres: List<Genre>,
+    override val has3D: Boolean,
+    override val hasImax: Boolean,
+    override val imdbId: String,
+    override val isTicketsAvailable: Boolean,
+    override val kinopoiskHDId: String,
+    override val kinopoiskId: Int,
+    override val lastSync: String,
+    override val logoUrl: Any,
+    override val nameEn: Any,
+    override val nameOriginal: String,
+    override val nameRu: String,
+    override val posterUrl: String,
+    override val posterUrlPreview: String,
+    override val productionStatus: Any,
+    override val ratingAgeLimits: String,
+    override val ratingAwait: Double,
+    override val ratingAwaitCount: Int,
+    override val ratingFilmCritics: Double,
+    override val ratingFilmCriticsVoteCount: Int,
+    override val ratingGoodReview: Double,
+    override val ratingGoodReviewVoteCount: Int,
+    override val ratingImdb: Double,
+    override val ratingImdbVoteCount: Int,
+    override val ratingKinopoisk: Double,
+    override val ratingKinopoiskVoteCount: Int,
+    override val ratingMpaa: String,
+    override val ratingRfCritics: Double,
+    override val ratingRfCriticsVoteCount: Int,
+    override val reviewsCount: Int,
+    override val serial: Boolean,
+    override val shortDescription: String,
+    override val shortFilm: Boolean,
+    override val slogan: String,
+    override val startYear: Any,
+    override val type: String,
+    override val webUrl: String,
+    override val year: Int
+) : MovieDescription

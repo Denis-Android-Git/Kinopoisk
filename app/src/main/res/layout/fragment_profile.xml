@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="50dp"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewEditCollectionBottom"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:background="#AEA5A5"
+        android:elevation="20dp"
+        android:visibility="gone"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="100dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutCollectionBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:endIconDrawable="@drawable/save"
+            app:endIconMode="custom">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextCollectionBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Введите название коллекции" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/imageViewCloseEditCollectionBottom"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="top|right"
+            android:padding="10dp"
+            android:src="@drawable/x" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_viewed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Просмотрено"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/viewed_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="15"
+                android:textAlignment="center"
+                android:textColor="@color/teal_700"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:focusable="true" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/viewed_recycler"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_viewed"
+                tools:listitem="@layout/item" />
+
+            <TextView
+                android:id="@+id/text_collections"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="Коллекции"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewed_recycler" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/plus"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_collections" />
+
+            <TextView
+                android:id="@+id/textViewCreateNewCollectionBottom"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="6dp"
+                android:clickable="true"
+                android:elevation="20dp"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="Создать новую коллекцию"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_collections" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/collection_recycler"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCreateNewCollectionBottom"
+                app:spanCount="2"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_collection" />
+
+            <TextView
+                android:id="@+id/text_interesting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Вам было интересно"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/collection_recycler" />
+
+            <TextView
+                android:id="@+id/interesting_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="15"
+                android:clickable="true"
+                android:textAlignment="center"
+                android:textColor="@color/teal_700"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/collection_recycler"
+                android:focusable="true" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/interesting_recycler"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_interesting"
+                tools:listitem="@layout/item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
