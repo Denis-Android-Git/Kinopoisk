@@ -13,6 +13,10 @@ import com.example.domain.domain.entity.dBCollection.CollectionWithMovies
 import com.example.domain.domain.entity.dBCollection.MovieId
 import com.example.domain.domain.usecase.MovieListUseCase
 import com.example.kinopoisk.App
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -56,13 +60,16 @@ class ProfileViewModel(
         }
     }
 
+    private val scope = CoroutineScope(Dispatchers.IO)
     fun getWantToWatchList(list: List<MovieId>) {
-        viewModelScope.launch {
-            val wantToWatch = mutableListOf<Movie>()
-            for (id in list) {
-                val movie = useCase.executeMovieDescription(id.movieId)
-                wantToWatch.add(movie)
-            }
+        val wantToWatch = mutableListOf<Movie>()
+        scope.launch {
+            list.map {
+                async {
+                    val movie = useCase.executeMovieDescription(it.movieId)
+                    wantToWatch.add(movie)
+                }
+            }.awaitAll()
             _interesting.value = wantToWatch
         }
     }
