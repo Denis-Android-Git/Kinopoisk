@@ -67,7 +67,6 @@ class ProfileFragment : Fragment() {
                 val interestingCollection = collectionList.find {
                     it.collection.collectionName == "interesting"
                 }
-                Log.d("tag", "коллекции: ${interestingCollection?.movies}")
                 profileViewModel.getViewedList(viewed?.movies!!)
                 interestingCollection.let {
                     if (it != null) {

@@ -10,7 +10,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-private const val API_KEY = BuildConfig.API_KEY3
+private const val API_KEY = BuildConfig.API_KEY5
 
 class RetrofitAndApi {
 
