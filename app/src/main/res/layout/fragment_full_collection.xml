@@ -16,7 +16,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="50dp"
             app:spanCount="2"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:orientation="vertical"
             tools:listitem="@layout/item" />
