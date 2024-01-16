@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-@HiltViewModel
 class MovieActorsSimilarsViewModel : ViewModel() {
 
     private val useCase = MovieListUseCase(MovieListRepository())

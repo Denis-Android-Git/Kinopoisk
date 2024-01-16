@@ -26,7 +26,11 @@ class ActorFilmographyFragment : Fragment() {
         _binding = FragmentActorFilmographyBinding.inflate(inflater, container, false)
 
         val filmography = when {
-            SDK_INT >= 33 -> arguments?.getParcelableArrayList("filmography", com.example.domain.domain.entity.Movie::class.java)
+            SDK_INT >= 33 -> arguments?.getParcelableArrayList(
+                "filmography",
+                com.example.domain.domain.entity.Movie::class.java
+            )
+
             else -> @Suppress("DEPRECATION") arguments?.getParcelableArrayList("filmography")
         }
 
@@ -92,9 +96,9 @@ class ActorFilmographyFragment : Fragment() {
             }
         } else {
 
-            binding.chip1.text = "Режиссер"
-            binding.chip2.text = "Сценарист"
-            binding.chip3.text = "Продюсер"
+            binding.chip1.text = "Режиссер ${director?.size}"
+            binding.chip2.text = "Сценарист ${writer?.size}"
+            binding.chip3.text = "Продюсер ${producer?.size}"
 
             binding.chip1.isChecked = true
 

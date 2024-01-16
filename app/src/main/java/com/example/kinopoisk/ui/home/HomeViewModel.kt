@@ -13,15 +13,14 @@ import com.example.domain.domain.usecase.MovieListUseCase
 import com.example.kinopoisk.ui.fullmovielist.PopularPagingSourse
 import com.example.kinopoisk.ui.fullmovielist.SelectionsPagingSourse
 import com.example.kinopoisk.ui.fullmovielist.Top250PagingSourse
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
-@HiltViewModel
 class HomeViewModel : ViewModel() {
 
     private val country = (1..34).random()
