@@ -76,6 +76,7 @@ class ProfileViewModel(
 
     fun deleteMoviesInCollection(collection: CollectionWithMovies) {
         viewModelScope.launch {
+            delay(400)
             for (movie in collection.movies) {
                 dao.deleteMovieId(movie)
             }

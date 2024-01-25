@@ -10,7 +10,7 @@ import ru.sr.adapter.adapterDelegate
 
 class ProfileCollectionDelegate(
     profileViewModel: ProfileViewModel,
-    onItemClick: (CollectionWithMovies) -> Unit
+    onItemClick: (CollectionWithMovies) -> Unit,
 ) : ListDelegateAdapter<CollectionWithMovies>(
     CollectionWithMoviesDiffUtil()
 ) {
@@ -36,9 +36,12 @@ fun collectionDelegateInProfile(
         }
     ) {
         bind {
+            binding.like.visibility = View.VISIBLE
+            binding.collectionSize.visibility = View.VISIBLE
+            binding.collectionName.visibility = View.VISIBLE
+            binding.progress.visibility = View.GONE
             binding.collectionName.text = item.collection.collectionName
             binding.collectionSize.text = item.movies.size.toString()
-
             binding.imageViewCloseEditCollectionBottom.visibility =
                 when (item.collection.collectionName) {
                     "Любимые" -> {
@@ -53,11 +56,15 @@ fun collectionDelegateInProfile(
                         View.VISIBLE
                     }
                 }
-            binding.imageViewCloseEditCollectionBottom.setOnClickListener {
-                profileViewModel.deleteMoviesInCollection(item)
-            }
             binding.root.setOnClickListener {
                 onItemClick.invoke(item)
+            }
+            binding.imageViewCloseEditCollectionBottom.setOnClickListener {
+                binding.progress.visibility = View.VISIBLE
+                binding.like.visibility = View.GONE
+                binding.collectionSize.visibility = View.GONE
+                binding.collectionName.visibility = View.GONE
+                profileViewModel.deleteMoviesInCollection(item)
             }
         }
     }

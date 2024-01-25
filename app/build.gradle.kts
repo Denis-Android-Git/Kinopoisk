@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId = "com.example.kinopoisk"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -69,7 +69,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     //Coil
-    implementation("io.coil-kt:coil:2.4.0")
+    implementation("io.coil-kt:coil:2.5.0")
 
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")

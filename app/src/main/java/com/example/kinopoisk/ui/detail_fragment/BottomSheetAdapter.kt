@@ -58,5 +58,5 @@ class CollectionWithMoviesDiffUtil : DiffUtil.ItemCallback<CollectionWithMovies>
     override fun areContentsTheSame(
         oldItem: CollectionWithMovies,
         newItem: CollectionWithMovies
-    ): Boolean = oldItem == newItem
+    ): Boolean = oldItem.collection.collectionId == newItem.collection.collectionId
 }

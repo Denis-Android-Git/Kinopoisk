@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(
     tableName = "movies",
     foreignKeys = [ForeignKey(
-        entity = com.example.domain.domain.entity.dBCollection.Collection::class,
+        entity = Collection::class,
         parentColumns = ["collectionId"],
         childColumns = ["collectionId"]
     )]

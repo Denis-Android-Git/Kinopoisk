@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
         MovieId::class,
         CollectionMovieCrossRef::class
     ],
-    version = 10,
+    version = 12,
     exportSchema = false
 )
 @TypeConverters(MovieIdListConverter::class)
