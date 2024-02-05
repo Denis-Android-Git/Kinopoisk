@@ -25,16 +25,20 @@ class ActorFragment : Fragment() {
     private var _binding: FragmentActorBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter = MovieListAdapter { item ->
-        onItemClick(item, this)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentActorBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val adapter = MovieListAdapter { item ->
+            onItemClick(item, this)
+        }
         val viewModel = ViewModelProvider(this)[ActorViewModel::class.java]
 
         val id = arguments?.getInt("personId")
@@ -67,8 +71,11 @@ class ActorFragment : Fragment() {
         viewModel.filteredList.onEach {
             adapter.submitList(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
 
-        return binding.root
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onDestroy() {

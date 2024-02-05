@@ -40,37 +40,36 @@ class DetailFragment : Fragment() {
 
     private var bottomNavBarVisibilityListener: HomeFragment.BottomNavBarVisibilityListener? = null
 
-    private val staffAdapter = StaffAdapter { item, view ->
-        onPersonClick(item, view, this)
-    }
-    private val actorAdapter = ActorAdapter { item, view ->
-        onPersonClick(item, view, this)
-    }
-
-    private val picturesAdapter = PicturesAdapter { picture, imageView ->
-        onPictureClick(picture, imageView, this)
-    }
-    private val similarsAdapter = MovieListAdapter { movie ->
-        onItemClick(movie, this)
-    }
-
     private val dbViewModel: DBViewModel by activityViewModels { DBViewModelFactory(requireActivity().application) }
 
     private val movieAndActorsViewModel: MovieActorsSimilarsViewModel by viewModels()
-
-    private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val staffAdapter = StaffAdapter { item, view2 ->
+            onPersonClick(item, view2, this)
+        }
+        val actorAdapter = ActorAdapter { item, view1 ->
+            onPersonClick(item, view1, this)
+        }
+
+        val similarsAdapter = MovieListAdapter { movie ->
+            onItemClick(movie, this)
+        }
 
         bottomNavBarVisibilityListener = activity as? HomeFragment.BottomNavBarVisibilityListener
 
         bottomNavBarVisibilityListener?.setBottomNavBarVisibility(true)
 
-        binding.galaryRecycler.adapter = picturesAdapter
         binding.actorsRecycler.adapter = actorAdapter
         binding.staffRecycler.adapter = staffAdapter
         binding.similarRecycler.adapter = similarsAdapter
@@ -78,10 +77,11 @@ class DetailFragment : Fragment() {
         val filmId = arguments?.getInt("filmId")
         val kinopoiskId = arguments?.getInt("kinopoiskId")
 
-        bottomSheetBehavior = BottomSheetBehavior.from<View>(binding.sheetBottom).apply {
-            state = BottomSheetBehavior.STATE_HIDDEN
-            peekHeight = 0
-        }
+        val bottomSheetBehavior: BottomSheetBehavior<View> =
+            BottomSheetBehavior.from<View>(binding.sheetBottom).apply {
+                state = BottomSheetBehavior.STATE_HIDDEN
+                peekHeight = 0
+            }
 
         bottomSheetBehavior.addBottomSheetCallback(
             object : BottomSheetBehavior.BottomSheetCallback() {
@@ -262,7 +262,6 @@ class DetailFragment : Fragment() {
                 }
             }
         }
-        return binding.root
     }
 
     override fun onDestroyView() {
@@ -288,6 +287,10 @@ class DetailFragment : Fragment() {
     }
 
     private fun getData(id: Int) {
+        val picturesAdapter = PicturesAdapter { picture, imageView ->
+            onPictureClick(picture, imageView, this)
+        }
+        binding.galaryRecycler.adapter = picturesAdapter
 
         viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {

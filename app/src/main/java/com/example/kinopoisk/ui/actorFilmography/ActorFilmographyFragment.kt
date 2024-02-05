@@ -15,28 +15,28 @@ class ActorFilmographyFragment : Fragment() {
     private var _binding: FragmentActorFilmographyBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter = ActorFilmographyAdapter { movie ->
-        onItemClick(movie, this)
-    }
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentActorFilmographyBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val adapter = ActorFilmographyAdapter { movie ->
+            onItemClick(movie, this)
+        }
         val filmography = when {
             SDK_INT >= 33 -> arguments?.getParcelableArrayList(
-                "filmography",
-                com.example.domain.domain.entity.Movie::class.java
+                "filmography", com.example.domain.domain.entity.Movie::class.java
             )
 
             else -> @Suppress("DEPRECATION") arguments?.getParcelableArrayList("filmography")
         }
 
         val actor = filmography?.filter {
-            it.professionKey == "ACTOR" &&
-                    !it.description?.contains("озвучка")!!
+            it.professionKey == "ACTOR" && !it.description?.contains("озвучка")!!
         }
 
         val voice = filmography?.filter {
@@ -59,10 +59,9 @@ class ActorFilmographyFragment : Fragment() {
             it.professionKey == "PRODUCER"
         }
 
-        if (
-            filmography?.get(0)?.professionKey == "ACTOR" ||
-            filmography?.get(0)?.professionKey == "HERSELF" ||
-            filmography?.get(0)?.professionKey == "HIMSELF"
+        if (filmography?.get(0)?.professionKey == "ACTOR" || filmography?.get(0)?.professionKey == "HERSELF" || filmography?.get(
+                0
+            )?.professionKey == "HIMSELF"
         ) {
 
             binding.chip1.isChecked = true
@@ -130,13 +129,16 @@ class ActorFilmographyFragment : Fragment() {
                 binding.chip2.isEnabled = true
             }
         }
-
-        return binding.root
     }
 
     private fun clearChipCheck(chip1: Chip, chip2: Chip) {
         chip1.isChecked = false
         chip2.isChecked = false
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onDestroy() {
