@@ -25,3 +25,8 @@
 ![3](https://github.com/Lobiofrom/Kinopoisk/assets/124072945/ce76abf2-ec34-4769-aa92-851c7987fda5)
 ![2](https://github.com/Lobiofrom/Kinopoisk/assets/124072945/dedb66f3-e912-4535-8608-7142b7f57d76)
 ![1](https://github.com/Lobiofrom/Kinopoisk/assets/124072945/d5a7553a-a091-4b85-a5b0-8392b9db737d)
+
+Видео:
+
+https://github.com/Lobiofrom/Kinopoisk/assets/124072945/cbede134-f3dd-4a2e-aeaa-2fc7a0e129e1
+
