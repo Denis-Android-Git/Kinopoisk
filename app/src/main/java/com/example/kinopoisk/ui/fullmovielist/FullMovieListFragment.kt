@@ -16,6 +16,7 @@ import com.example.kinopoisk.ui.home.HomeFragment
 import com.example.kinopoisk.ui.home.HomeViewModel
 import com.example.kinopoisk.ui.home.MovieListAdapter
 import com.example.kinopoisk.utils.onItemClick
+import com.example.kinopoisk.utils.onItemClickTwo
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -27,11 +28,11 @@ class FullMovieListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val adapter = MovieListAdapter { movie ->
-        onItemClick(movie, this)
+        onItemClickTwo(movie, this)
     }
 
     private val pagedAdapter = FullMovieListAdapter { movie ->
-        onItemClick(movie, this)
+        onItemClickTwo(movie, this)
     }
 
     private var bottomNavBarVisibilityListener: HomeFragment.BottomNavBarVisibilityListener? = null

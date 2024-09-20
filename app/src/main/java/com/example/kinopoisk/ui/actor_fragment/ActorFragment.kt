@@ -16,6 +16,7 @@ import com.example.kinopoisk.R
 import com.example.kinopoisk.databinding.FragmentActorBinding
 import com.example.kinopoisk.ui.home.MovieListAdapter
 import com.example.kinopoisk.utils.onItemClick
+import com.example.kinopoisk.utils.onItemClickTwo
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -37,7 +38,7 @@ class ActorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = MovieListAdapter { item ->
-            onItemClick(item, this)
+            onItemClickTwo(item, this)
         }
         val viewModel = ViewModelProvider(this)[ActorViewModel::class.java]
 

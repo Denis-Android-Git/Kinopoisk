@@ -25,6 +25,7 @@ import com.example.kinopoisk.ui.gallary_fragments.PicturesViewModelFactory
 import com.example.kinopoisk.ui.home.HomeFragment
 import com.example.kinopoisk.ui.home.MovieListAdapter
 import com.example.kinopoisk.utils.onItemClick
+import com.example.kinopoisk.utils.onItemClickTwo
 import com.example.kinopoisk.utils.onPersonClick
 import com.example.kinopoisk.utils.onPictureClick
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -63,7 +64,7 @@ class DetailFragment : Fragment() {
         }
 
         val similarsAdapter = MovieListAdapter { movie ->
-            onItemClick(movie, this)
+            onItemClickTwo(movie, this)
         }
 
         bottomNavBarVisibilityListener = activity as? HomeFragment.BottomNavBarVisibilityListener
@@ -287,8 +288,8 @@ class DetailFragment : Fragment() {
     }
 
     private fun getData(id: Int) {
-        val picturesAdapter = PicturesAdapter { picture, imageView ->
-            onPictureClick(picture, imageView, this)
+        val picturesAdapter = PicturesAdapter { picture, index, imageView ->
+            onPictureClick("STILL", picture, imageView, this, id, index)
         }
         binding.galaryRecycler.adapter = picturesAdapter
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.kinopoisk.databinding.FragmentActorFilmographyBinding
 import com.example.kinopoisk.utils.onItemClick
+import com.example.kinopoisk.utils.onItemClickTwo
 import com.google.android.material.chip.Chip
 
 class ActorFilmographyFragment : Fragment() {
@@ -25,7 +26,7 @@ class ActorFilmographyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = ActorFilmographyAdapter { movie ->
-            onItemClick(movie, this)
+            onItemClickTwo(movie, this)
         }
         val filmography = when {
             SDK_INT >= 33 -> arguments?.getParcelableArrayList(

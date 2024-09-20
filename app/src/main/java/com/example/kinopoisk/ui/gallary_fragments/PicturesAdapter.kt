@@ -7,11 +7,11 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.kinopoisk.databinding.ItemFullGalleryBinding
 import com.example.domain.domain.entity.Item
+import com.example.kinopoisk.databinding.ItemFullGalleryBinding
 
 class PicturesAdapter(
-    private val onClick: (Item, ImageView) -> Unit
+    private val onClick: (Item, Int, ImageView) -> Unit
 ) : PagingDataAdapter<Item, PicturesViewHolder>(PicturesDiffUtilCallback()) {
     override fun onBindViewHolder(holder: PicturesViewHolder, position: Int) {
         val item = getItem(position)
@@ -21,7 +21,7 @@ class PicturesAdapter(
 
             root.setOnClickListener {
                 idIVImage.transitionName = "picture"
-                onClick.invoke(item!!, idIVImage)
+                onClick.invoke(item!!, position, idIVImage)
             }
         }
     }
@@ -44,4 +44,5 @@ class PicturesDiffUtilCallback : DiffUtil.ItemCallback<Item>() {
     override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean = oldItem == newItem
 }
 
-class PicturesViewHolder(val binding: ItemFullGalleryBinding) : RecyclerView.ViewHolder(binding.root)
+class PicturesViewHolder(val binding: ItemFullGalleryBinding) :
+    RecyclerView.ViewHolder(binding.root)

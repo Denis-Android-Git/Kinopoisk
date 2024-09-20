@@ -6,21 +6,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.domain.entity.Movie
-import com.example.domain.domain.entity.dBCollection.CollectionWithMovies
+import com.example.domain.domain.entity.MovieForUi
 import com.example.kinopoisk.R
 import com.example.kinopoisk.databinding.ItemHorizontalRecyclerBinding
 import com.example.kinopoisk.utils.onItemClick
 
 class VerticalAdapter(
-    private val fragment: HomeFragment,
-    private val collectionWithMovies: CollectionWithMovies
-    ) :
+    private val fragment: HomeFragment
+) :
     RecyclerView.Adapter<VerticalViewHolder>() {
 
-    private var movieList: List<List<Movie>> = emptyList()
+    private var movieList: List<List<MovieForUi>> = emptyList()
 
-    fun setMovies(movies: List<List<Movie>>) {
+    fun setMovies(movies: List<List<MovieForUi>>) {
         movieList = movies
         notifyDataSetChanged()
     }
@@ -37,7 +35,7 @@ class VerticalAdapter(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: VerticalViewHolder, position: Int) {
-        val horizontalAdapter = MovieListAdapterHomeFragment(collectionWithMovies) { movie ->
+        val horizontalAdapter = MovieListAdapterHomeFragment { movie ->
             onItemClick(movie, fragment)
         }
         holder.binding.itemHorizontalRecycler.adapter = horizontalAdapter

@@ -52,16 +52,15 @@ class HomeFragment : Fragment() {
                 val viewed = list.find {
                     it.collection.collectionName == "Viewed"
                 }
-                Log.d("viewed", "viewed----> ${viewed?.movies}")
-                val verticalAdapter = VerticalAdapter(this@HomeFragment, viewed!!)
-
-                binding.recyclerNewMovies.adapter = verticalAdapter
-
-                homeViewModel.genresList.onEach {
-                    verticalAdapter.setMovies(it)
-                }.launchIn(viewLifecycleOwner.lifecycleScope)
+                homeViewModel.init(viewed)
             }
         }
+
+        homeViewModel.genresList.onEach {
+            val verticalAdapter = VerticalAdapter(this@HomeFragment)
+            binding.recyclerNewMovies.adapter = verticalAdapter
+            verticalAdapter.setMovies(it)
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {

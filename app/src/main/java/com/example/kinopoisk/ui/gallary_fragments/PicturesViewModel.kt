@@ -34,7 +34,7 @@ class PicturesViewModel(
 
     fun getPictures(type: String) {
         val picturesData = Pager(
-            config = PagingConfig(pageSize = 10),
+            config = PagingConfig(pageSize = 100),
             pagingSourceFactory = { PicturesPagingSource(id, type) }
         ).flow.cachedIn(viewModelScope)
         pictures = picturesData

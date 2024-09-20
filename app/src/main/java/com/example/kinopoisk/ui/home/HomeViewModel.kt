@@ -8,7 +8,10 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.data.data.MovieListRepository
 import com.example.data.data.State
+import com.example.data.data.mapper.MapClassForUi
 import com.example.domain.domain.entity.Movie
+import com.example.domain.domain.entity.MovieForUi
+import com.example.domain.domain.entity.dBCollection.CollectionWithMovies
 import com.example.domain.domain.usecase.MovieListUseCase
 import com.example.kinopoisk.ui.fullmovielist.PopularPagingSourse
 import com.example.kinopoisk.ui.fullmovielist.SelectionsPagingSourse
@@ -39,15 +42,68 @@ class HomeViewModel : ViewModel() {
     private val currentYear = yearFormat.format(year).uppercase(Locale.US)
 
     private val movieListUseCase = MovieListUseCase(MovieListRepository())
+    private val mapClassForUi = MapClassForUi()
 
     private val _premiers = MutableStateFlow<List<Movie>>(emptyList())
     val premiers = _premiers.asStateFlow()
 
-    private var _genresList = MutableStateFlow<List<List<Movie>>>(emptyList())
+    private var _genresList = MutableStateFlow<List<List<MovieForUi>>>(emptyList())
     val genresList = _genresList.asStateFlow()
 
     private var _state = MutableStateFlow<State>(State.Success)
     val state = _state.asStateFlow()
+
+    fun init(dbList: CollectionWithMovies?) {
+        viewModelScope.launch {
+            val listOfLists = mutableListOf<List<MovieForUi>>()
+            _state.value = State.Loading
+            try {
+                val premiers = movieListUseCase.executePremiers(currentMonth, currentYear, null)
+                if (premiers.isNotEmpty()) {
+                    val premiersUi = mapClassForUi.mapMovieListToMovieForUiList(premiers, dbList)
+                    listOfLists.add(premiersUi)
+                }
+                val top250 = movieListUseCase.execute250(null)
+                if (top250.isNotEmpty()) {
+                    val top250Ui = mapClassForUi.mapMovieListToMovieForUiList(top250, dbList)
+                    listOfLists.add(top250Ui)
+                }
+                val popular = movieListUseCase.executePopular(null)
+                if (popular.isNotEmpty()) {
+                    val popularUi = mapClassForUi.mapMovieListToMovieForUiList(popular, dbList)
+                    listOfLists.add(popularUi)
+                }
+                val selection = movieListUseCase.executeSelection(country, genre, "ALL", 1990, null)
+                if (selection.isNotEmpty()) {
+                    val selectionUi = mapClassForUi.mapMovieListToMovieForUiList(selection, dbList)
+                    listOfLists.add(selectionUi)
+                }
+                val series = movieListUseCase.executeSelection(
+                    countrySeries,
+                    genreSeries,
+                    "TV_SERIES",
+                    2010,
+                    null
+                )
+                if (series.isNotEmpty()) {
+                    val seriesUi = mapClassForUi.mapMovieListToMovieForUiList(series, dbList)
+                    listOfLists.add(seriesUi)
+                }
+                val selection2 =
+                    movieListUseCase.executeSelection(country2, genre2, "ALL", 1990, null)
+                if (selection2.isNotEmpty()) {
+                    val selection2Ui =
+                        mapClassForUi.mapMovieListToMovieForUiList(selection2, dbList)
+                    listOfLists.add(selection2Ui)
+                }
+
+                _genresList.value = listOfLists
+                _state.value = State.Success
+            } catch (e: Exception) {
+                _state.value = State.Error
+            }
+        }
+    }
 
     val top250paged: Flow<PagingData<Movie>> = Pager(
         config = PagingConfig(pageSize = 10),
@@ -87,40 +143,6 @@ class HomeViewModel : ViewModel() {
             try {
                 val premiers = movieListUseCase.executePremiers(currentMonth, currentYear, null)
                 _premiers.value = premiers
-                _state.value = State.Success
-            } catch (e: Exception) {
-                _state.value = State.Error
-            }
-        }
-    }
-
-    init {
-        viewModelScope.launch {
-            val listOfLists = mutableListOf<List<Movie>>()
-            _state.value = State.Loading
-            try {
-                val premiers = movieListUseCase.executePremiers(currentMonth, currentYear, null)
-                val top250 = movieListUseCase.execute250(null)
-                val popular = movieListUseCase.executePopular(null)
-                val selection = movieListUseCase.executeSelection(country, genre, "ALL", 1990, null)
-                val series = movieListUseCase.executeSelection(
-                    countrySeries,
-                    genreSeries,
-                    "TV_SERIES",
-                    2010,
-                    null
-                )
-                val selection2 =
-                    movieListUseCase.executeSelection(country2, genre2, "ALL", 1990, null)
-
-                listOfLists.add(premiers)
-                listOfLists.add(top250)
-                listOfLists.add(popular)
-                listOfLists.add(selection)
-                listOfLists.add(series)
-                listOfLists.add(selection2)
-
-                _genresList.value = listOfLists
                 _state.value = State.Success
             } catch (e: Exception) {
                 _state.value = State.Error

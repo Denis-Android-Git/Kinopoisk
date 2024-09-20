@@ -13,6 +13,7 @@ import com.example.kinopoisk.databinding.FragmentProfileBinding
 import com.example.kinopoisk.ui.home.MovieListAdapter
 import com.example.kinopoisk.utils.onCollectionClick
 import com.example.kinopoisk.utils.onItemClick
+import com.example.kinopoisk.utils.onItemClickTwo
 import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
@@ -39,10 +40,10 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val viewedAdapter = MovieListAdapter { item ->
-            onItemClick(item, this)
+            onItemClickTwo(item, this)
         }
         val watchAdapter = MovieListAdapter { item ->
-            onItemClick(item, this)
+            onItemClickTwo(item, this)
         }
         val collectionAdapter =
             ProfileCollectionDelegate(profileViewModel) { collectionWithMovies ->

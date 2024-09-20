@@ -13,6 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.kinopoisk.databinding.FragmentFullCollectionBinding
 import com.example.kinopoisk.ui.home.MovieListAdapter
 import com.example.kinopoisk.utils.onItemClick
+import com.example.kinopoisk.utils.onItemClickTwo
 import kotlinx.coroutines.launch
 
 class FullCollectionFragment : Fragment() {
@@ -35,7 +36,7 @@ class FullCollectionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = MovieListAdapter {
-            onItemClick(it, this)
+            onItemClickTwo(it, this)
         }
         binding.recyclerFullMovieList.adapter = adapter
         val collectionName = arguments?.getString("collectionName")

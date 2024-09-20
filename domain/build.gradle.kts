@@ -36,7 +36,7 @@ android {
 dependencies {
 
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
 
     //Room
     implementation("androidx.room:room-runtime:2.6.1")

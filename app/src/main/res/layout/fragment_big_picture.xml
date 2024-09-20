@@ -5,10 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.gallary_fragments.BigPictureFragment">
 
-    <ImageView
-        android:id="@+id/big_picture"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/ViewPager2"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:transitionName="picture"
-        />
+        android:layout_height="match_parent" />
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/big_picture"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:transitionName="picture"-->
+    <!--        />-->
 </FrameLayout>

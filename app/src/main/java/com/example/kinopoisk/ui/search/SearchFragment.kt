@@ -3,6 +3,7 @@ package com.example.kinopoisk.ui.search
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.kinopoisk.R
 import com.example.kinopoisk.databinding.FragmentSearchBinding
 import com.example.kinopoisk.utils.onItemClick
+import com.example.kinopoisk.utils.onItemClickTwo
 import com.example.kinopoisk.utils.onPersonSearchClick
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -42,7 +44,7 @@ class SearchFragment : Fragment() {
         }
         val movieAdapter by lazy {
             MovieDelegateAdapter {
-                onItemClick(it, this)
+                onItemClickTwo(it, this)
             }
         }
 
@@ -69,6 +71,7 @@ class SearchFragment : Fragment() {
                         movieAdapter.addLoadStateListener { loadState ->
                             if (loadState.append.endOfPaginationReached) {
                                 if (movieAdapter.itemCount < 1) {
+                                    Log.d("itemCount", "itemCount")
                                     binding.errortextmovie.visibility = View.VISIBLE
                                 }
                             }

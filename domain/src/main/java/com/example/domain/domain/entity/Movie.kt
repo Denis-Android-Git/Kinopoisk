@@ -4,14 +4,14 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Movie(
-    val countries: List<com.example.domain.domain.entity.Country>?,
+    val countries: List<Country>?,
     val ratingKinopoisk: Double,
     val filmId: Int,
     val kinopoiskId: Int,
     val filmLength: String?,
     val rating: String?,
     val imdbId: String?,
-    val genres: List<com.example.domain.domain.entity.Genre>?,
+    val genres: List<Genre>?,
     val nameOriginal: String?,
     val nameEn: String?,
     val nameRu: String?,
@@ -55,17 +55,17 @@ data class Movie(
     val slogan: String?,
     val startYear: Any?,
     val webUrl: String?,
-) : com.example.domain.domain.entity.BaseMediaItem() {
+) : BaseMediaItem() {
 
     constructor(parcel: Parcel) : this(
-        parcel.createTypedArrayList(com.example.domain.domain.entity.Country.CREATOR),
+        parcel.createTypedArrayList(Country.CREATOR),
         parcel.readDouble(),
         parcel.readInt(),
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.createTypedArrayList(com.example.domain.domain.entity.Genre.CREATOR),
+        parcel.createTypedArrayList(Genre.CREATOR),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -162,12 +162,12 @@ data class Movie(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<com.example.domain.domain.entity.Movie> {
-        override fun createFromParcel(parcel: Parcel): com.example.domain.domain.entity.Movie {
-            return com.example.domain.domain.entity.Movie(parcel)
+    companion object CREATOR : Parcelable.Creator<Movie> {
+        override fun createFromParcel(parcel: Parcel): Movie {
+            return Movie(parcel)
         }
 
-        override fun newArray(size: Int): Array<com.example.domain.domain.entity.Movie?> {
+        override fun newArray(size: Int): Array<Movie?> {
             return arrayOfNulls(size)
         }
     }

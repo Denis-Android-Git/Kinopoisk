@@ -19,20 +19,18 @@ class GalleryFragment : Fragment() {
 
     private var _binding: FragmentGallaryBinding? = null
     private val binding get() = _binding!!
-
-    private val picturesAdapter = PicturesAdapter { picture, imageView ->
-        onPictureClick(picture, imageView, this)
-    }
-
     private var currentCategory: String = "STILL"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentGallaryBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val id = arguments?.getInt("id")
 
         val picturesViewModel =
@@ -42,7 +40,7 @@ class GalleryFragment : Fragment() {
 
         binding.chip1.setOnClickListener {
             currentCategory = "STILL"
-            onChipClicked(currentCategory, picturesViewModel)
+            onChipClicked(currentCategory, picturesViewModel, id)
             clearChipCheck(binding.chip2, binding.chip3)
             binding.chip1.isEnabled = false
             binding.chip2.isEnabled = true
@@ -50,7 +48,7 @@ class GalleryFragment : Fragment() {
         }
         binding.chip2.setOnClickListener {
             currentCategory = "SHOOTING"
-            onChipClicked(currentCategory, picturesViewModel)
+            onChipClicked(currentCategory, picturesViewModel, id)
             clearChipCheck(binding.chip1, binding.chip3)
             binding.chip2.isEnabled = false
             binding.chip1.isEnabled = true
@@ -58,19 +56,24 @@ class GalleryFragment : Fragment() {
         }
         binding.chip3.setOnClickListener {
             currentCategory = "POSTER"
-            onChipClicked(currentCategory, picturesViewModel)
+            onChipClicked(currentCategory, picturesViewModel, id)
             clearChipCheck(binding.chip1, binding.chip2)
             binding.chip3.isEnabled = false
             binding.chip1.isEnabled = true
             binding.chip2.isEnabled = true
         }
 
-        onChipClicked(currentCategory, picturesViewModel)
-
-        return binding.root
+        onChipClicked(currentCategory, picturesViewModel, id)
     }
 
-    private fun onChipClicked(category: String, viewModel: PicturesViewModel) {
+    private fun onChipClicked(
+        category: String,
+        viewModel: PicturesViewModel,
+        id: Int?
+    ) {
+        val picturesAdapter = PicturesAdapter { picture, index, imageView ->
+            onPictureClick(category, picture, imageView, this, id, index)
+        }
         binding.recyclerGallery.apply {
             layoutManager = StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)
             adapter = picturesAdapter
@@ -87,8 +90,8 @@ class GalleryFragment : Fragment() {
         chip2.isChecked = false
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }

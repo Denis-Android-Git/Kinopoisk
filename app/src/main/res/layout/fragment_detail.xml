@@ -499,6 +499,18 @@
         android:elevation="20dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCollectionBottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_bottom_sheet_recycler" />
+
         <View
             android:id="@+id/view2"
             android:layout_width="match_parent"
@@ -600,18 +612,6 @@
             app:layout_constraintBottom_toTopOf="@+id/view2"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/view" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewCollectionBottom"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view2"
-            tools:itemCount="3"
-            tools:listitem="@layout/item_bottom_sheet_recycler" />
 
         <ImageView
             android:layout_width="30dp"
